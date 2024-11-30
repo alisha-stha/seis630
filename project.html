@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Auction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #af2024;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        .auction-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .auction-item h3 {
+            margin-top: 0;
+        }
+
+        .bidding-form {
+            margin-top: 1rem;
+        }
+
+        .bidding-form input[type="number"],
+        .bidding-form button {
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .bidding-form button {
+            background-color: #af2024;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .bidding-form button:hover {
+            background-color: #45a049;
+        }
+
+        .status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Charity Auction</h1>
+    </header>
+
+    <div class="container">
+        <!-- Auction Item -->
+        <div class="auction-item">
+            <h3>Item Name: <span id="itemName">Beautiful Painting</span></h3>
+            <p>Item Description: A stunning piece of art to brighten your home.</p>
+            <p>Current Highest Bid: $<span id="highestBid">150</span></p>
+            <p>Quantity: <span id="quantity">1</span></p>
+
+            <!-- Bidding Form -->
+            <div class="bidding-form">
+                <form id="bidForm">
+                    <label for="bidAmount">Your Bid Amount ($):</label>
+                    <input type="number" id="bidAmount" name="bidAmount" min="1" required>
+                    <button type="submit">Place Bid</button>
+                </form>
+            </div>
+
+            <!-- Status -->
+            <div class="status" id="status">
+                Place your bid above the current highest bid to win!
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Charity Auction. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Example JavaScript to handle form submission and update status dynamically
+        const bidForm = document.getElementById("bidForm");
+        const highestBidElement = document.getElementById("highestBid");
+        const statusElement = document.getElementById("status");
+
+        bidForm.addEventListener("submit", (event) => {
+            event.preventDefault(); // Prevent form from refreshing the page
+            const bidAmount = parseFloat(document.getElementById("bidAmount").value);
+            const currentHighestBid = parseFloat(highestBidElement.textContent);
+
+            if (bidAmount > currentHighestBid) {
+     
